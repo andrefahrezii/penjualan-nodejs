@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { Sequelize, DataTypes } = require('sequelize');
 const swaggerUi = require('swagger-ui-express');
+const cors = require('cors'); // Tambahkan baris ini
+
 const swaggerDocument = require('../swagger.json');
 
 const app = express();
@@ -11,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(bodyParser.json());
+app.use(cors()); // Tambahkan baris ini untuk menangani CORS
 
 const sequelize = new Sequelize({
     dialect: 'mysql',
