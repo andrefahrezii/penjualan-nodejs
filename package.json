@@ -1,0 +1,24 @@
+{
+  "name": "nodejs-sequelize-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/app.js",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seeder": "npx sequelize-cli db:seed:all"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.3",
+    "nodemon": "^3.0.1",
+    "path": "^0.12.7",
+    "sequelize": "^6.35.0",
+    "swagger-ui-express": "^5.0.0"
+  }
+}

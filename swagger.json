@@ -1,0 +1,330 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Node.js Sequelize CRUD API",
+    "description": "API documentation for Node.js Sequelize CRUD operations"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/barang": {
+      "get": {
+        "summary": "Get all items",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Barang"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new item",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Barang"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Barang"
+            }
+          }
+        }
+      }
+    },
+    "/barang/{id}": {
+      "get": {
+        "summary": "Get item by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Barang"
+            }
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update item by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Barang"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete item by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        }
+      }
+    },
+    "/penjualan": {
+      "get": {
+        "summary": "Get all sales",
+        "parameters": [
+          {
+            "name": "barangId",
+            "in": "query",
+            "description": "Filter sales by barangId",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search sales by nama",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Filter sales (options: 'terbanyak', 'terdikit')",
+            "required": false,
+            "type": "string",
+            "enum": ["terbanyak", "terdikit"]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the number of sales",
+            "required": false,
+            "type": "integer",
+            "default": 5
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Order sales by totalHarga",
+            "required": false,
+            "type": "string",
+            "enum": ["DESC", "ASC"],
+            "default": "DESC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Penjualan"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new sale",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "jumlah": {
+                  "type": "integer"
+                },
+                "totalHarga": {
+                  "type": "integer"
+                },
+                "barangId": {
+                  "type": "integer"
+                },
+                "tanggalPenjualan": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "required": [
+                "jumlah",
+                "totalHarga",
+                "BarangId",
+                "tanggalPenjualan"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Penjualan"
+            }
+          }
+        }
+      }
+    },
+    "/penjualan/{id}": {
+      "get": {
+        "summary": "Get sale by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Penjualan"
+            }
+          },
+          "404": {
+            "description": "Sale not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update sale by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Penjualan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "Sale not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete sale by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "Sale not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Barang": {
+      "type": "object",
+      "properties": {
+        "nama": {
+          "type": "string"
+        },
+        "stok": {
+          "type": "integer"
+        },
+        "jumlahTerjual": {
+          "type": "integer"
+        },
+        "tanggalTransaksi": {
+          "type": "string",
+          "format": "date"
+        },
+        "jenisBarang": {
+          "type": "string"
+        }
+      }
+    },
+    "Penjualan": {
+      "type": "object",
+      "properties": {
+        "jumlah": {
+          "type": "integer"
+        },
+        "totalHarga": {
+          "type": "integer"
+        },
+        "BarangId": {
+          "type": "integer"
+        },
+        "tanggalPenjualan": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    }
+  }
+}
