@@ -1,7 +1,4 @@
-// src/routes/barangRoutes.js
-
 module.exports = (app, Barang) => {
-    // Create
     app.post('/barang', async (req, res) => {
         try {
             const newBarang = req.body;
@@ -13,7 +10,6 @@ module.exports = (app, Barang) => {
         }
     });
 
-    // Read All
     app.get('/barang', async (req, res) => {
         try {
             const barang = await Barang.findAll();
@@ -24,7 +20,6 @@ module.exports = (app, Barang) => {
         }
     });
 
-    // Read One
     app.get('/barang/:id', async (req, res) => {
         try {
             const barang = await Barang.findByPk(req.params.id);
@@ -39,7 +34,6 @@ module.exports = (app, Barang) => {
         }
     });
 
-    // Update
     app.put('/barang/:id', async (req, res) => {
         try {
             const updatedBarang = await Barang.update(req.body, {
@@ -56,7 +50,6 @@ module.exports = (app, Barang) => {
         }
     });
 
-    // Delete
     app.delete('/barang/:id', async (req, res) => {
         try {
             const deletedBarang = await Barang.destroy({
@@ -72,8 +65,6 @@ module.exports = (app, Barang) => {
             res.status(500).json({ error: 'Internal Server Error' });
         }
     });
-
-    // ... tambahkan endpoint CRUD lainnya ...
 
     return app;
 };

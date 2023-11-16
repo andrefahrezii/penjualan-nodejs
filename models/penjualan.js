@@ -1,5 +1,3 @@
-// src/models/Penjualan.js
-
 const { Model, DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {

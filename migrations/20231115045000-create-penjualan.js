@@ -18,11 +18,10 @@ module.exports = {
             tanggalPenjualan: {
                 type: Sequelize.DATE
             },
-            // Sesuaikan dengan nama kolom yang sesuai dengan asosiasi model Barang
             BarangId: {
                 type: Sequelize.INTEGER,
                 references: {
-                    model: 'Barangs', // Sesuaikan dengan nama tabel Barang
+                    model: 'Barangs',
                     key: 'id',
                 },
                 onUpdate: 'CASCADE',

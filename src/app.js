@@ -1,10 +1,8 @@
-// src/app.js
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Sequelize, DataTypes } = require('sequelize');
 const swaggerUi = require('swagger-ui-express');
-const cors = require('cors'); // Tambahkan baris ini
+const cors = require('cors');
 
 const swaggerDocument = require('../swagger.json');
 
@@ -13,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(bodyParser.json());
-app.use(cors()); // Tambahkan baris ini untuk menangani CORS
+app.use(cors());
 
 const sequelize = new Sequelize({
     dialect: 'mysql',
@@ -26,13 +24,9 @@ const sequelize = new Sequelize({
 const Barang = require('../models/barang')(sequelize);
 const Penjualan = require('../models/penjualan')(sequelize);
 
-// Routes
 const barangRoutes = require('./routes/barangRoutes')(app, Barang);
 const penjualanRoutes = require('./routes/penjualanRoutes')(app, Penjualan, Barang);
 
-
-
-// Server listening
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
